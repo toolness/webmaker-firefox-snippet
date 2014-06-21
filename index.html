@@ -5,9 +5,24 @@
 
     <link rel="icon" type="image/png" id="favicon" href="icon32.png"/>
     <link rel="stylesheet" type="text/css" media="all" href="chrome://browser/content/abouthome/aboutHome.css"/>
+    <style>
+    .prototype-ribbon {
+      padding: 10px;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: darkorange;
+      color: black;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .prototype-ribbon:hover {
+      background: orange;
+    }
+    </style>
   </head>
 
   <body>
+    <a href="http://cupcakes.hivelearningnetworks.org/project/53a42a99b56db9e04a000007" data-ribbonate="top left" class="prototype-ribbon">Prototype</a>
     <div class="spacer"></div>
     <div id="topSection">
       <div id="brandLogo"></div>
@@ -78,5 +93,6 @@
     </div>
 
     <a id="aboutMozilla" href="https://www.mozilla.org/about/?utm_source=about-home&amp;utm_medium=Referral"></a>
+    <script src="ribbonate.js"></script>
   </body>
 </html>
