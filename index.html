@@ -5,6 +5,7 @@
 
     <link rel="icon" type="image/png" id="favicon" href="icon32.png"/>
     <link rel="stylesheet" type="text/css" media="all" href="chrome://browser/content/abouthome/aboutHome.css"/>
+    <link rel="stylesheet" href="snippet.css">
     <style>
     .prototype-ribbon {
       padding: 10px;
@@ -19,6 +20,16 @@
       background: orange;
     }
     </style>
+    <script src="ribbonate.js"></script>
+    <script src="jquery.js"></script>
+    <script src="snippet.js"></script>
+    <script>
+    $(function() {
+      $('.snippet-set').load('snippet.html', function() {
+        Snippet.start();
+      });
+    });
+    </script>
   </head>
 
   <body>
@@ -37,44 +48,7 @@
 
       <div id="snippetContainer">
         <div id="snippets">
-          <div class="snippet-set">
-            <style type="text/css">
-#snippetContainer div.snippet {
-}
-
-#snippetContainer div.snippet img.icon {
-  margin: -0.75em 1em 0 0;
-  width: 48px;
-  float: left;
-}
-
-.snippet {
-  position: relative;
-}
-
-.snippet .icon {
-  position: absolute;
-  right: 400px;
-  top: 5px;
-}
-
-.snippet p {
-  display: table-cell;
-  height: 40px;
-  padding-left: 80px;
-  vertical-align: middle;
-  width: 400px;
-}
-            </style>
-            <div>
-
-<div class="snippet">
-  <img class="icon" src="webmaker-logo.png" />
-  <p>Hey you, maker! Want to redesign this page? <a href="#">Click here</a> to change the background.</p>
-</div>
-
-            </div>
-          </div>
+          <div class="snippet-set"></div>
         </div>
       </div>
     </div>
@@ -93,6 +67,5 @@
     </div>
 
     <a id="aboutMozilla" href="https://www.mozilla.org/about/?utm_source=about-home&amp;utm_medium=Referral"></a>
-    <script src="ribbonate.js"></script>
   </body>
 </html>
