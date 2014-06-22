@@ -21,3 +21,61 @@ div.snippet img.icon {
   vertical-align: middle;
   width: 400px;
 }
+
+.body-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  pointer-events: none;
+  transition: border-color 1s, background 0.33s;
+}
+
+.body-frame.selected {
+  border-color: gray;
+}
+
+.body-frame .arrow-box:not(.selected) {
+  opacity: 0;
+  margin-left: 40px;
+}
+
+/* http://cssarrowplease.com/ */
+.body-frame .arrow-box {
+  position: relative;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  width: 200px;
+  padding: 20px 20px;
+  margin-left: 10px;
+  margin-top: 25%;
+  border-radius: 4px;
+  transition: opacity 1s, margin-left 1s;
+}
+
+.body-frame .arrow-box:after {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0.85);
+  border-width: 10px;
+  margin-top: -10px;
+}
+
+.body-frame .arrow-box code {
+  font-family: inherit;
+  color: #66BDFF;
+}
