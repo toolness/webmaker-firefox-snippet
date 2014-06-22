@@ -1,4 +1,11 @@
+body {
+  transition: background 0.25s;
+}
+
 div.snippet img.icon {
+  position: absolute;
+  top: 5px;
+  right: 400px;
   margin: -0.75em 1em 0 0;
   width: 48px;
   float: left;
@@ -8,18 +15,27 @@ div.snippet img.icon {
   position: relative;
 }
 
-.snippet .icon {
-  position: absolute;
-  right: 400px;
-  top: 5px;
+.snippet .snippet-content {
+  padding-left: 80px;
+  width: 400px;
+  height: 180px;
 }
 
-.snippet p {
-  display: table-cell;
-  height: 40px;
-  padding-left: 80px;
-  vertical-align: middle;
-  width: 400px;
+.snippet code {
+  font-size: 12px;
+}
+
+.snippet input[type=text] {
+  border: none;
+  background: transparent;
+}
+
+#snippet-end {
+  transition: opacity 1s;
+}
+
+#snippet-end:not(.selected) {
+  opacity: 0;
 }
 
 .body-frame {
