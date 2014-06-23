@@ -60,6 +60,43 @@ div.snippet img.icon {
   background: black;
 }
 
+/* http://cssarrowplease.com/ */
+.snippet .arrow-box {
+  position: absolute;
+  top: -40px;
+  left: -20px;
+  color: white;
+  padding: 4px;
+  font: message-box;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 4px;
+  display: inline-block;
+  transition: opacity 0.5s;
+}
+
+.snippet .arrow-box:not(.selected) {
+  opacity: 0;
+}
+
+.snippet .arrow-box:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: rgba(0, 0, 0, 0.85);
+  border-width: 4px;
+  margin-left: -4px;
+}
+
+#snippet-css-container {
+  position: relative;
+}
+
 #snippet-end {
   transition: opacity 1s;
 }

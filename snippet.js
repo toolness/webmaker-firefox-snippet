@@ -1,5 +1,6 @@
 var Snippet = (function() {
   var inCruiseControl = false;
+  var wasCssTinkeredWith = false;
 
   function setCss() {
     var css = $('#snippet-css').val();
@@ -38,6 +39,10 @@ var Snippet = (function() {
                 setTimeout(function() {
                   $('.body-frame, .arrow-box').removeClass('selected');
                   $('#snippet-end').addClass('selected');
+                  setTimeout(function() {
+                    if (!wasCssTinkeredWith)
+                      $('.snippet .arrow-box').addClass('selected');
+                  }, 3000);
                 }, 1000);
               });
             });
@@ -90,8 +95,13 @@ var Snippet = (function() {
     activateTypeahead();
     $('#snippet-css').on('keyup change', setCss);
     $('#snippet-css').on('keydown', function(e) {
-      if (inCruiseControl && !e.ctrlKey && !e.metaKey
-          && !e.altKey) return false;
+      if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+        if (inCruiseControl) return false;
+        if (!wasCssTinkeredWith) {
+          $('.snippet .arrow-box').removeClass('selected');
+          wasCssTinkeredWith = true;
+        }
+      }
     });
     $("#snippet-begin").click(function() {
       startRemixing();
