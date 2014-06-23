@@ -25,9 +25,39 @@ div.snippet img.icon {
   font-size: 12px;
 }
 
-.snippet input[type=text] {
+.snippet #snippet-css, .snippet .tt-dropdown-menu {
+  width: 200px;
+}
+
+.snippet #snippet-css {
   border: none;
   background: transparent;
+
+  /* Twitter typeahead is pushing it down somehow, so we'll push it
+   * back up with this. */
+  margin-top: -12px;
+}
+
+.snippet .tt-dropdown-menu {
+  font: message-box;
+  background: white;
+  max-height: 150px;
+  border: 1px solid black;
+  overflow-y: auto;
+  box-shadow: 2px 2px 2px black;
+}
+
+.snippet .tt-dropdown-menu p {
+  margin: 0;
+}
+
+.snippet .tt-dropdown-menu .tt-suggestion {
+  padding: 2px;
+}
+
+.snippet .tt-dropdown-menu .tt-cursor {
+  color: white;
+  background: black;
 }
 
 #snippet-end {

@@ -1,5 +1,5 @@
 var Snippet = (function() {
-  var inCruiseControl = true;
+  var inCruiseControl = false;
 
   function setCss() {
     var css = $('#snippet-css').val();
@@ -19,14 +19,12 @@ var Snippet = (function() {
       setTimeout(typeNextChar, 250);
     }
 
+    $('#snippet-css').val('');
     typeNextChar();
   }
 
   function startRemixing() {
-    $('#snippet-css').on('keyup change', setCss);
-    $('#snippet-css').on('keydown', function() {
-      if (inCruiseControl) return false;
-    });
+    inCruiseControl = true;
     $('#snippet-pg-1').fadeOut(function() {
       $('#snippet-pg-2').fadeIn(function() {
         $('.body-frame').addClass('selected');
@@ -48,7 +46,52 @@ var Snippet = (function() {
     });
   }
 
+  function activateTypeahead() {
+    // http://twitter.github.io/typeahead.js/examples/
+    var substringMatcher = function(strs) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function(i, str) {
+          if (substrRegex.test(str)) {
+            // the typeahead jQuery plugin expects suggestions to a
+            // JavaScript object, refer to typeahead docs for more info
+            matches.push({ value: str });
+          }
+        });
+
+        cb(matches);
+      };
+    };
+
+    $('#snippet-css').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    }, {
+      name: 'colors',
+      displayKey: 'value',
+      source: substringMatcher(Object.keys(CSS_COLORS).sort())
+    });
+
+    // Uncomment this to debug styling.
+    // $('#snippet-css').focus().typeahead('val', 'gray').typeahead('open');
+  }
+
   function start() {
+    activateTypeahead();
+    $('#snippet-css').on('keyup change', setCss);
+    $('#snippet-css').on('keydown', function() {
+      if (inCruiseControl) return false;
+    });
     $("#snippet-begin").click(function() {
       startRemixing();
       return false;
