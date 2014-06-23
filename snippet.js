@@ -89,8 +89,9 @@ var Snippet = (function() {
   function start() {
     activateTypeahead();
     $('#snippet-css').on('keyup change', setCss);
-    $('#snippet-css').on('keydown', function() {
-      if (inCruiseControl) return false;
+    $('#snippet-css').on('keydown', function(e) {
+      if (inCruiseControl && !e.ctrlKey && !e.metaKey
+          && !e.altKey) return false;
     });
     $("#snippet-begin").click(function() {
       startRemixing();
